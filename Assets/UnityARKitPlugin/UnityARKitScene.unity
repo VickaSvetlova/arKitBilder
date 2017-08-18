@@ -322,6 +322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 229804521}
   - component: {fileID: 229804522}
+  - component: {fileID: 229804523}
   m_Layer: 0
   m_Name: CameraParent
   m_TagString: Untagged
@@ -335,8 +336,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 229804520}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -9.46}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9}
@@ -358,6 +359,20 @@ MonoBehaviour:
   vertical: 1
   mouseSens: 5
   _obsticle: {fileID: 0}
+--- !u!114 &229804523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 229804520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa05dbfbdaa7a864884b8aadd2711a0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  touchInputMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &352515708
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,7 +678,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1286139109}
+      - m_Target: {fileID: 1121988273}
         m_MethodName: Inside
         m_Mode: 1
         m_Arguments:
@@ -936,6 +951,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1121988271}
   - component: {fileID: 1121988272}
+  - component: {fileID: 1121988273}
   m_Layer: 0
   m_Name: Object
   m_TagString: Untagged
@@ -951,7 +967,7 @@ Transform:
   m_GameObject: {fileID: 1121988270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 1883914160}
   m_Father: {fileID: 1286139108}
@@ -969,6 +985,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HitTransform: {fileID: 1286139108}
+--- !u!114 &1121988273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1121988270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6df1895f9e971348990362bfeba5553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1153389248
 GameObject:
   m_ObjectHideFlags: 0
@@ -1018,6 +1045,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1286139108}
   - component: {fileID: 1286139109}
+  - component: {fileID: 1286139110}
+  - component: {fileID: 1286139111}
   m_Layer: 0
   m_Name: HitCubeParent
   m_TagString: Untagged
@@ -1033,7 +1062,7 @@ Transform:
   m_GameObject: {fileID: 1286139107}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1121988271}
   m_Father: {fileID: 0}
@@ -1047,9 +1076,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 1286139107}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6df1895f9e971348990362bfeba5553, type: 3}
+  m_Script: {fileID: 11500000, guid: aa05dbfbdaa7a864884b8aadd2711a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  touchInputMask:
+    serializedVersion: 2
+    m_Bits: 256
+--- !u!65 &1286139110
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1286139107}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1286139111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1286139107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be2dfd6e18bc45d41bc3a8ab27daa186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultColor: {r: 0, g: 0, b: 0, a: 0}
+  SelectedColour: {r: 0, g: 0, b: 0, a: 0}
+  touchPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1308259102
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,7 +1347,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1286139109}
+      - m_Target: {fileID: 1121988273}
         m_MethodName: LookAT
         m_Mode: 1
         m_Arguments:

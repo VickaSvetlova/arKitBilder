@@ -42,8 +42,8 @@ public class MouseLook : MonoBehaviour
     {
         //original position for true Rotation
         origRotation = transform.rotation;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
 
     }
     private void Update()

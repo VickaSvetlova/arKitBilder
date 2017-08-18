@@ -32,6 +32,7 @@ public class TouchScript : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     recipient.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
+                    recipient.GetComponent<Booton>().touchPosition = hit.point;
 
                 }
                 if (Input.GetMouseButtonUp(0))
@@ -41,11 +42,13 @@ public class TouchScript : MonoBehaviour
                 if (Input.GetMouseButton(0))
                 {
                     recipient.SendMessage("OnTouchStay", hit.point, SendMessageOptions.DontRequireReceiver);
+                    recipient.GetComponent<Booton>().touchPosition =hit.point;
                 }
 
             }
             foreach (var g in touchesOld)
             {
+                
                 if (!touchList.Contains(g))
                 {
                     g.SendMessage("OnTouchExit", hit.point, SendMessageOptions.DontRequireReceiver);
@@ -73,6 +76,7 @@ public class TouchScript : MonoBehaviour
                     if (touch.phase == TouchPhase.Began)
                     {
                         recipient.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
+                      //  recipient.GetComponent<Booton>().touchPosition = touch.position;
                     }
                     if (touch.phase == TouchPhase.Ended)
                     {
@@ -101,6 +105,7 @@ public class TouchScript : MonoBehaviour
 
     private void drawLine(Ray ray, Vector3 hit)
     {
+        return;
         var drawRender = GetComponent<LineRenderer>();
         drawRender.SetPosition(0, ray.origin);
         drawRender.SetPosition(1, hit);

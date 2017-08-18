@@ -13,11 +13,13 @@ public class objectScript : MonoBehaviour {
     {
         if (!inside)
         {
+            Debug.Log("1:1");
             transform.localScale = new Vector3(1, 1, 1);
             
         }
         else
         {
+            Debug.Log("smal");
             transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         }
         inside = !inside;
