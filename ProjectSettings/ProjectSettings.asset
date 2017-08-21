@@ -6,12 +6,12 @@ PlayerSettings:
   serializedVersion: 12
   productGUID: 6f1c150c1d09e34438d8b828344ac6d5
   AndroidProfiler: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 3
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: HoloGroup
-  productName: arkitbuildertTester
+  productName: arkitbuilderTester
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -144,7 +144,7 @@ PlayerSettings:
     Android: com.Company.ProductName
     Standalone: unity.Unity Technologies.Native Rendering Plugin Example
     Tizen: com.Company.ProductName
-    iOS: com.hologroup.arkitbuildertTester
+    iOS: com.hologroup.arkitbuilderTester
     tvOS: com.Company.ProductName
   buildNumber:
     iOS: 0
@@ -166,7 +166,7 @@ PlayerSettings:
     serializedVersion: 2
     m_Bits: 238
   iPhoneSdkVersion: 988
-  iOSTargetOSVersionString: 6.0
+  iOSTargetOSVersionString: 11.0
   tvOSSdkVersion: 0
   tvOSRequireExtendedGameController: 0
   tvOSTargetOSVersionString: 9.0
@@ -215,7 +215,7 @@ PlayerSettings:
   metalEditorSupport: 0
   metalAPIValidation: 0
   iOSRenderExtraFrameOnPause: 1
-  appleDeveloperTeamID: 
+  appleDeveloperTeamID: xbitstream@gmail.com
   iOSManualSigningProvisioningProfileID: 
   tvOSManualSigningProvisioningProfileID: 
   appleEnableAutomaticSigning: 1
