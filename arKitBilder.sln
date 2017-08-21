@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
+# Visual Studio for Mac
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "arKitBilder", "arKitBilder.csproj", "{13E22D6A-3D9E-9B1A-BB8C-586047BC2303}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "arKitBilder.Editor", "arKitBilder.Editor.csproj", "{983ABCDF-C320-602C-2BD6-B36222DB3D50}"

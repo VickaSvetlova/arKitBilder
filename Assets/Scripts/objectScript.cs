@@ -17,14 +17,14 @@ public class objectScript : MonoBehaviour {
         if (!inside)
         {
             Debug.Log("1:1");
-            objParent.transform.localScale = new Vector3(1, 1, 1);
+            objParent.transform.localScale = new Vector3(10, 10, 10);
             objParent.transform.position = Camera.main.transform.position;           
             
         }
         else
         {
             Debug.Log("smal");
-            objParent.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            objParent.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             objParent.transform.position = Camera.main.transform.forward*1;
            
         }

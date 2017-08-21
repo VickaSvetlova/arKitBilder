@@ -11,7 +11,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: HoloGroup
-  productName: arKitBuilder
+  productName: arkitbuildertTester
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -57,9 +57,9 @@ PlayerSettings:
   iosAppInBackgroundBehavior: 0
   displayResolutionDialog: 0
   iosAllowHTTPDownload: 1
-  allowedAutorotateToPortrait: 1
-  allowedAutorotateToPortraitUpsideDown: 1
-  allowedAutorotateToLandscapeRight: 1
+  allowedAutorotateToPortrait: 0
+  allowedAutorotateToPortraitUpsideDown: 0
+  allowedAutorotateToLandscapeRight: 0
   allowedAutorotateToLandscapeLeft: 1
   useOSAutorotation: 0
   use32BitDisplayBuffer: 0
@@ -144,7 +144,7 @@ PlayerSettings:
     Android: com.Company.ProductName
     Standalone: unity.Unity Technologies.Native Rendering Plugin Example
     Tizen: com.Company.ProductName
-    iOS: com.hologroup.arkitbuilder
+    iOS: com.hologroup.arkitbuildertTester
     tvOS: com.Company.ProductName
   buildNumber:
     iOS: 0
