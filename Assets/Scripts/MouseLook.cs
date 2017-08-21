@@ -27,6 +27,7 @@ public class MouseLook : MonoBehaviour
     //Original rotation object
     Quaternion origRotation;
     public GameObject _obsticle;
+    public float moveSpeed=1;
     #endregion
 
     #region Events
@@ -68,7 +69,8 @@ public class MouseLook : MonoBehaviour
             Quaternion rotationX = Quaternion.AngleAxis(-vertical, Vector3.right);
 
             transform.rotation = origRotation * rotationY * rotationX;
-           // EventRotation(rotationY);
+            // EventRotation(rotationY);
+            
 
         }
     }

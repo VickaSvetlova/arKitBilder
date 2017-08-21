@@ -11,7 +11,7 @@ namespace UnityEngine.XR.iOS
         bool HitTestWithResultType (ARPoint point, ARHitTestResultType resultTypes)
         {
             List<ARHitTestResult> hitResults = UnityARSessionNativeInterface.GetARSessionNativeInterface ().HitTest (point, resultTypes);
-            if (hitResults.Count > 0) {
+            if (hitResults.Count > 1) {
                 foreach (var hitResult in hitResults) {
                     Debug.Log ("Got hit!");
                     m_HitTransform.position = UnityARMatrixOps.GetPosition (hitResult.worldTransform);
@@ -25,7 +25,7 @@ namespace UnityEngine.XR.iOS
 		
 		// Update is called once per frame
 		void Update () {
-			if (Input.touchCount > 0 && m_HitTransform != null && !EventSystem.current.IsPointerOverGameObject(0))
+			if (Input.touchCount > 1 && m_HitTransform != null && !EventSystem.current.IsPointerOverGameObject(0))
 			{
 				var touch = Input.GetTouch(0);
 				if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved)

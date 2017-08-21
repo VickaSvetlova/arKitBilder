@@ -5,6 +5,7 @@ using UnityEngine;
 public class objectScript : MonoBehaviour {
     private bool inside=false;
     public GameObject objParent;
+    private Camera cam;
 	public void LookAT()
 
     {
@@ -17,8 +18,7 @@ public class objectScript : MonoBehaviour {
         {
             Debug.Log("1:1");
             objParent.transform.localScale = new Vector3(1, 1, 1);
-            objParent.transform.position = new Vector3(0, 0, 0);
-            Camera.main.transform.position = new Vector3(0, 0.118f, 0);
+            objParent.transform.position = Camera.main.transform.position;           
             
         }
         else
