@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Booton.cs" />
+    <Compile Include="Assets\Scripts\Drag2.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\objectScript.cs" />
     <Compile Include="Assets\Scripts\TouchScript.cs" />

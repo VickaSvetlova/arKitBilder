@@ -170,8 +170,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
-  far clip plane: 30
+  near clip plane: 0.01
+  far clip plane: 35.04
   field of view: 60
   orthographic: 0
   orthographic size: 100
@@ -337,7 +337,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 229804520}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.06}
+  m_LocalPosition: {x: 0, y: 0.118, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9}
@@ -372,7 +372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchInputMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
 --- !u!1 &352515708
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,7 +979,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1121988270}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6941ec02ead994c9b848d640887441f1, type: 3}
   m_Name: 
@@ -996,6 +996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6df1895f9e971348990362bfeba5553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objParent: {fileID: 1286139107}
 --- !u!1 &1153389248
 GameObject:
   m_ObjectHideFlags: 0
@@ -1044,7 +1045,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1286139108}
-  - component: {fileID: 1286139109}
   - component: {fileID: 1286139110}
   - component: {fileID: 1286139111}
   m_Layer: 0
@@ -1061,27 +1061,13 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1286139107}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.055, y: -0, z: 0.358}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 1121988271}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1286139109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1286139107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa05dbfbdaa7a864884b8aadd2711a0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  touchInputMask:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!65 &1286139110
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1105,8 +1091,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be2dfd6e18bc45d41bc3a8ab27daa186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DefaultColor: {r: 0, g: 0, b: 0, a: 0}
-  SelectedColour: {r: 0, g: 0, b: 0, a: 0}
+  DefaultColor: {r: 0.625, g: 0.11029411, b: 0.11029411, a: 0}
+  SelectedColour: {r: 0.11856618, g: 0.19297686, b: 0.9485294, a: 0}
   touchPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1308259102
 GameObject:
@@ -1163,7 +1149,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4998759230357022, guid: ed4ef1f473e60804589f64fc1d58d366, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 4998759230357022, guid: ed4ef1f473e60804589f64fc1d58d366, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1305,7 +1291,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.018805755, y: 0.037769787}
   m_AnchorMax: {x: 0.20700002, y: 0.1457746}
-  m_AnchoredPosition: {x: -1.5, y: -8.700012}
+  m_AnchoredPosition: {x: -32, y: -39}
   m_SizeDelta: {x: -259, y: -104.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1907651135
@@ -1342,7 +1328,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1907651136}
   m_OnClick:
     m_PersistentCalls:

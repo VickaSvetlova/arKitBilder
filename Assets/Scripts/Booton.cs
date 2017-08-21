@@ -10,15 +10,12 @@ public class Booton : MonoBehaviour {
 
     private void Start()
     {
-      mat = GetComponent<Renderer>().material;
+      mat = GetComponentInChildren<Renderer>().material;
     }
    void OnTouchDown()
     {
          mat.color = SelectedColour;
-        Calculate();
-
-
-
+       
     }
     void OnTouchUP()
     {
@@ -35,9 +32,6 @@ public class Booton : MonoBehaviour {
     }
     void Calculate()
     {
-        Vector3 pos = Camera.main.ScreenToWorldPoint(touchPosition);
-        float dist = Vector3.Distance(transform.position, Camera.main.transform.position);
-        pos = new Vector3(touchPosition.x, touchPosition.y, dist);
-        transform.position = pos;
+        transform.position = new Vector3(touchPosition.x, touchPosition.y,touchPosition.z);
     }
 }
