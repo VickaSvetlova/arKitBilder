@@ -24,8 +24,8 @@ public class objectScript : MonoBehaviour {
         else
         {
             Debug.Log("smal");
-            objParent.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-            objParent.transform.position = new Vector3(Camera.main.transform.forward.x/4, Camera.main.transform.position.y, Camera.main.transform.forward.z/4);
+            objParent.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            objParent.transform.position = Camera.main.transform.forward*1;
            
         }
         inside = !inside;

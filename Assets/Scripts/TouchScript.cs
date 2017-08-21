@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TouchScript : MonoBehaviour
 {
@@ -11,10 +12,43 @@ public class TouchScript : MonoBehaviour
     private RaycastHit hit;
     private Vector3 trim;
     private float dist;
+    private enum state { move,rotation,setpoint}
+    private state Stat;
+    public Text text;
+    public bool setPos;
+
+    private void Start()
+    {
+        Stat = state.move;
+        text.text = Stat.ToString();
+    }
+    public void statesSwich(string str)
+    {
+        setPos = false;
+        if (str == "move")
+        {
+            Stat = state.move;
+        }
+        if (str == "rotate")
+        {
+            Stat = state.rotation;
+        }
+        if (str == "setpoint")
+        {
+            Stat = state.setpoint;
+            setPos = true;
+        }
+        text.text = Stat.ToString();
+    }
 
     void Update()
     {
 #if UNITY_EDITOR
+
+        switch (Stat)
+        {
+            case state.move:               
+
         if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0))
 
         {
@@ -39,7 +73,7 @@ public class TouchScript : MonoBehaviour
                     Debug.Log("pressDown");
                     dist = hit.distance; //hit.distance + Camera.main.nearClipPlane;
                     trim = hit.collider.transform.position - hit.point;
-                   
+
                     recipient.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
                     //recipient.GetComponent<Booton>().touchPosition = hit.point;
                 }
@@ -54,10 +88,10 @@ public class TouchScript : MonoBehaviour
                     pos.z = dist;
                     //pos = ray.origin + ray.direction * dist;
                     //pos = ray.direction+ trim;
-                    pos = Camera.main.ScreenToWorldPoint(pos)+ trim; // это новая координата
+                    pos = Camera.main.ScreenToWorldPoint(pos) + trim; // это новая координата
 
-                    recipient.GetComponent<Booton>().touchPosition =pos;
-                    recipient.SendMessage("OnTouchStay", hit.point, SendMessageOptions.DontRequireReceiver);                   
+                    recipient.GetComponent<Booton>().touchPosition = pos;
+                    recipient.SendMessage("OnTouchStay", hit.point, SendMessageOptions.DontRequireReceiver);
                 }
             }
             foreach (var g in touchesOld)
@@ -69,6 +103,7 @@ public class TouchScript : MonoBehaviour
                 }
             }
         }
+
 
 
 
@@ -101,7 +136,7 @@ public class TouchScript : MonoBehaviour
                     }
                     if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
                     {
-                     Vector3   pos = touch.position;
+                        Vector3 pos = touch.position;
                         pos.z = dist;
                         pos = Camera.main.ScreenToWorldPoint(pos) + trim; // это новая координата
                         recipient.GetComponent<Booton>().touchPosition = pos;
@@ -123,6 +158,14 @@ public class TouchScript : MonoBehaviour
             }
 
         }
+                break;
+            case state.rotation:
+
+
+                break;
+
+        }
+
     }
 
     private void drawLine(Ray ray, Vector3 hit)

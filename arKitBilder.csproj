@@ -87,15 +87,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="arKitBilder.Plugins.csproj">
-      <Project>{04A94FFB-69FE-730C-068D-2F1FCF6186FF}</Project>
-      <Name>arKitBilder.Plugins</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\menuScript.cs" />
     <Compile Include="Assets\Scripts\Booton.cs" />
     <Compile Include="Assets\Scripts\Drag2.cs" />
+    <Compile Include="Assets\Scripts\LeanFinger.cs" />
+    <Compile Include="Assets\Scripts\LeanTouch.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\objectScript.cs" />
     <Compile Include="Assets\Scripts\TouchScript.cs" />
@@ -162,10 +158,6 @@
     <Compile Include="Assets\UnityARKitPlugin\UnityARAmbient.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
-    <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
-    <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
-    <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\UnityARKitPlugin\ARKitRemote\ARKITREMOTE.txt" />
     <None Include="Assets\UnityARKitPlugin\Examples\InstancedSurfaceShader.shader" />
     <None Include="Assets\UnityARKitPlugin\Plugins\iOS\UnityARKit\Shaders\MobileARShadow.shader" />

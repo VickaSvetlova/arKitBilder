@@ -142,24 +142,12 @@
       <Project>{13E22D6A-3D9E-9B1A-BB8C-586047BC2303}</Project>
       <Name>arKitBilder</Name>
     </ProjectReference>
-    <ProjectReference Include="arKitBilder.Plugins.csproj">
-      <Project>{04A94FFB-69FE-730C-068D-2F1FCF6186FF}</Project>
-      <Name>arKitBilder.Plugins</Name>
-    </ProjectReference>
-    <ProjectReference Include="arKitBilder.Editor.Plugins.csproj">
-      <Project>{E4512976-FD33-53AA-6720-3AB119FE8FDD}</Project>
-      <Name>arKitBilder.Editor.Plugins</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\UnityARKitPlugin\HSVPicker\Editor\BoxSliderEditor.cs" />
     <Compile Include="Assets\UnityARKitPlugin\Plugins\iOS\UnityARKit\Editor\UnityARBuildPostprocessor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
-    <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
-    <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
-    <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\UnityARKitPlugin\ARKitRemote\ARKITREMOTE.txt" />
     <None Include="Assets\UnityARKitPlugin\Examples\InstancedSurfaceShader.shader" />
     <None Include="Assets\UnityARKitPlugin\Plugins\iOS\UnityARKit\Shaders\MobileARShadow.shader" />

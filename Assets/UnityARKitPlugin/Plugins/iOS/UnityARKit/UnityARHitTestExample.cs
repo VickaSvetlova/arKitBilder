@@ -6,12 +6,15 @@ namespace UnityEngine.XR.iOS
 {
 	public class UnityARHitTestExample : MonoBehaviour
 	{
+        public TouchScript touchscript;
 		public Transform m_HitTransform;
 
         bool HitTestWithResultType (ARPoint point, ARHitTestResultType resultTypes)
         {
             List<ARHitTestResult> hitResults = UnityARSessionNativeInterface.GetARSessionNativeInterface ().HitTest (point, resultTypes);
-            if (hitResults.Count > 1) {
+            if (hitResults.Count > 0)
+              
+                {
                 foreach (var hitResult in hitResults) {
                     Debug.Log ("Got hit!");
                     m_HitTransform.position = UnityARMatrixOps.GetPosition (hitResult.worldTransform);
@@ -25,8 +28,9 @@ namespace UnityEngine.XR.iOS
 		
 		// Update is called once per frame
 		void Update () {
-			if (Input.touchCount > 1 && m_HitTransform != null && !EventSystem.current.IsPointerOverGameObject(0))
-			{
+			if (touchscript.setPos && Input.touchCount > 0 && m_HitTransform != null && !EventSystem.current.IsPointerOverGameObject(0))
+               
+                {
 				var touch = Input.GetTouch(0);
 				if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved)
 				{
