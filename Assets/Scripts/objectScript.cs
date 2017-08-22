@@ -19,17 +19,21 @@ public class objectScript : MonoBehaviour {
         {
             Debug.Log("1:1");
             objParent.transform.localScale = new Vector3(1, 1, 1);
-            objParent.transform.position = Camera.main.transform.position;           
-            
+            objParent.transform.position = Camera.main.transform.position;
+
         }
         else
         {
             Debug.Log("smal");
-            objParent.transform.localScale = new Vector3(scalleSmallFactor,scalleSmallFactor,scalleSmallFactor);
-            objParent.transform.position = Camera.main.transform.forward*2;
-           
+            objParent.transform.localScale = new Vector3(scalleSmallFactor, scalleSmallFactor, scalleSmallFactor);
+            objParent.transform.position = Camera.main.transform.forward * 2;
+
         }
         inside = !inside;
+    }
+    public void Scale(float scaleFactor){
+        objParent.transform.localScale = new Vector3(objParent.transform.localScale.x+scaleFactor, objParent.transform.localScale.y+scaleFactor, objParent.transform.localScale.z+scaleFactor);
+
     }
    
 }

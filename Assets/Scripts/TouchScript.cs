@@ -25,9 +25,11 @@ public class TouchScript : MonoBehaviour
     private float rotY;
     private bool _inside;
 
-    public Transform point1;
-    public Transform point2;
+    public GameObject point1;
+    public GameObject point2;
     public float SensevityScale;
+	private float distanceOld;
+	private float distance;
 
     private void Start()
     {
@@ -95,12 +97,12 @@ public class TouchScript : MonoBehaviour
 
                         if (Input.GetMouseButtonDown(0))
                         {
-                           
+
                             Debug.Log("pressDown");
                             dist = hit.distance; //hit.distance + Camera.main.nearClipPlane;
                             trim = hit.collider.transform.position - hit.point;
                             recipient.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
-                           
+
                         }
                         if (Input.GetMouseButtonUp(0))
                         {
@@ -169,9 +171,9 @@ public class TouchScript : MonoBehaviour
                             float rotX = Input.GetAxis(("Mouse X")) * rotationSpeed;
                             float rotY = Input.GetAxis(("Mouse Y")) * rotationSpeed;
                             tempObjec.transform.Rotate(Vector3.up, -rotX, Space.World);
-							tempObjec.transform.Rotate(Vector3.up, -rotY, Space.World);
+                            tempObjec.transform.Rotate(Vector3.up, -rotY, Space.World);
 
-						}
+                        }
                     }
                     foreach (var g in touchesOld)
                     {
@@ -184,9 +186,36 @@ public class TouchScript : MonoBehaviour
                 }
 
                 break;
+
             case state.scale:
-              
+
+                return;
+                //        distanceOld = Vector3.Distance(point1.transform.position, point2.transform.position);
+                  
+                   
+                //        distance = Vector3.Distance(point1.transform.position, point2.transform.position);
+                        
+                //if (distance != distanceOld)
+                        //{
+                        //    objectScript script = (objectScript)FindObjectOfType(typeof(objectScript));
+
+                        //    if (distance > distanceOld)
+                        //    {
+
+                        //        SensevityScale += 0.1f;
+                        //        script.Scale(SensevityScale);
+                        //    }
+                        //    else
+                        //    {
+                        //       SensevityScale -= 0.1f;
+                        //        script.Scale(SensevityScale);
+                        //    }
+
+                        //}
+                        //distanceOld = distance;distance
+                    
                 break;
+        
 
         }
 
@@ -308,6 +337,37 @@ public class TouchScript : MonoBehaviour
 
 				}
                 break;
+			case state.scale:
+                if (Input.touchCount == 2)
+                {
+                    // Store both touches.
+                    Touch touchZero = Input.GetTouch(0);
+                    Touch touchOne = Input.GetTouch(1);
+
+                    // Find the position in the previous frame of each touch.
+                    Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
+                    Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
+
+                    // Find the magnitude of the vector (the distance) between the touches in each frame.
+                    float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
+                    float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
+
+                    // Find the difference in the distances between each frame.
+                    float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
+
+                  
+                        objectScript script = (objectScript)FindObjectOfType(typeof(objectScript));
+
+                        // ... change the orthographic size based on the change in distance between the touches.
+                        script.scalleSmallFactor += deltaMagnitudeDiff * 0.1f;
+
+
+
+                }
+		
+					
+				break;
+
         }
     }
 	public void Inside()
