@@ -1,0 +1,260 @@
+fileFormatVersion: 2
+guid: 21acf54f99dc043d4908669d698b265e
+timeCreated: 1503399732
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Back_Vent
+    100002: Back_Wall
+    100004: Back_Wall 1
+    100006: Balki
+    100008: Chairs
+    100010: Chairs_MeshPart0
+    100012: Chairs_MeshPart1
+    100014: Chairs_MeshPart2
+    100016: Chairs_MeshPart3
+    100018: Chairs_MeshPart4
+    100020: Chairs_MeshPart5
+    100022: Chairs_MeshPart6
+    100024: Door_Frames
+    100026: Door_Glass
+    100028: Flag_Poles
+    100030: Flags
+    100032: Flags 1
+    100034: Floor_FLOORTAG
+    100036: Glass
+    100038: Grass_Platform
+    100040: L_Roof
+    100042: L_Wall
+    100044: L_Wall1
+    100046: Lights
+    100048: Lights_back
+    100050: Locator_INSIDETAG
+    100052: Object2169
+    100054: R_Roof
+    100056: R_Wall
+    100058: R_Wall1
+    100060: Roof_1
+    100062: Roof_ROOFTAG
+    100064: Rus_Glag_grp
+    100066: Shape233
+    100068: Small_Parts
+    100070: Stadium_Sound
+    100072: //RootNode
+    100074: TV_set
+    100076: UnderRoof
+    100078: Walls
+    100080: Window_Frames
+    100082: Wood_Stairs
+    400000: Back_Vent
+    400002: Back_Wall
+    400004: Back_Wall 1
+    400006: Balki
+    400008: Chairs
+    400010: Chairs_MeshPart0
+    400012: Chairs_MeshPart1
+    400014: Chairs_MeshPart2
+    400016: Chairs_MeshPart3
+    400018: Chairs_MeshPart4
+    400020: Chairs_MeshPart5
+    400022: Chairs_MeshPart6
+    400024: Door_Frames
+    400026: Door_Glass
+    400028: Flag_Poles
+    400030: Flags
+    400032: Flags 1
+    400034: Floor_FLOORTAG
+    400036: Glass
+    400038: Grass_Platform
+    400040: L_Roof
+    400042: L_Wall
+    400044: L_Wall1
+    400046: Lights
+    400048: Lights_back
+    400050: Locator_INSIDETAG
+    400052: Object2169
+    400054: R_Roof
+    400056: R_Wall
+    400058: R_Wall1
+    400060: Roof_1
+    400062: Roof_ROOFTAG
+    400064: Rus_Glag_grp
+    400066: Shape233
+    400068: Small_Parts
+    400070: Stadium_Sound
+    400072: //RootNode
+    400074: TV_set
+    400076: UnderRoof
+    400078: Walls
+    400080: Window_Frames
+    400082: Wood_Stairs
+    2300000: Back_Vent
+    2300002: Back_Wall 1
+    2300004: Balki
+    2300006: Chairs_MeshPart0
+    2300008: Chairs_MeshPart1
+    2300010: Chairs_MeshPart2
+    2300012: Chairs_MeshPart3
+    2300014: Chairs_MeshPart4
+    2300016: Chairs_MeshPart5
+    2300018: Chairs_MeshPart6
+    2300020: Door_Frames
+    2300022: Door_Glass
+    2300024: Flag_Poles
+    2300026: Flags 1
+    2300028: Floor_FLOORTAG
+    2300030: Glass
+    2300032: Grass_Platform
+    2300034: L_Roof
+    2300036: L_Wall1
+    2300038: Lights_back
+    2300040: Object2169
+    2300042: R_Roof
+    2300044: R_Wall1
+    2300046: Roof_1
+    2300048: Rus_Glag_grp
+    2300050: Shape233
+    2300052: Stadium_Sound
+    2300054: TV_set
+    2300056: UnderRoof
+    2300058: Window_Frames
+    2300060: Wood_Stairs
+    3300000: Back_Vent
+    3300002: Back_Wall 1
+    3300004: Balki
+    3300006: Chairs_MeshPart0
+    3300008: Chairs_MeshPart1
+    3300010: Chairs_MeshPart2
+    3300012: Chairs_MeshPart3
+    3300014: Chairs_MeshPart4
+    3300016: Chairs_MeshPart5
+    3300018: Chairs_MeshPart6
+    3300020: Door_Frames
+    3300022: Door_Glass
+    3300024: Flag_Poles
+    3300026: Flags 1
+    3300028: Floor_FLOORTAG
+    3300030: Glass
+    3300032: Grass_Platform
+    3300034: L_Roof
+    3300036: L_Wall1
+    3300038: Lights_back
+    3300040: Object2169
+    3300042: R_Roof
+    3300044: R_Wall1
+    3300046: Roof_1
+    3300048: Rus_Glag_grp
+    3300050: Shape233
+    3300052: Stadium_Sound
+    3300054: TV_set
+    3300056: UnderRoof
+    3300058: Window_Frames
+    3300060: Wood_Stairs
+    4300000: Floor_FLOORTAG
+    4300002: R_Wall1
+    4300004: R_Roof
+    4300006: L_Wall1
+    4300008: L_Roof
+    4300010: Back_Wall
+    4300012: Roof_1
+    4300014: UnderRoof
+    4300016: Shape233
+    4300018: Object2169
+    4300020: Lights_back
+    4300022: Balki
+    4300024: Stadium_Sound
+    4300026: Back_Vent
+    4300028: Rus_Glag_grp
+    4300030: TV_set
+    4300032: Flags
+    4300034: Flag_Poles
+    4300036: Glass
+    4300038: Door_Glass
+    4300040: Wood_Stairs
+    4300042: Door_Frames
+    4300044: Window_Frames
+    4300046: Grass_Platform
+    4300048: Chairs_MeshPart0
+    4300050: Chairs_MeshPart1
+    4300052: Chairs_MeshPart2
+    4300054: Chairs_MeshPart3
+    4300056: Chairs_MeshPart4
+    4300058: Chairs_MeshPart5
+    4300060: Chairs_MeshPart6
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -12,7 +12,7 @@ public class TouchScript : MonoBehaviour
     private RaycastHit hit;
     private Vector3 trim;
     private float dist;
-    private enum state { move, rotation, setpoint }
+    private enum state { move, rotation, setpoint,inside,scale }
     private state Stat;
     public Text text;
     public bool setPos;
@@ -23,6 +23,11 @@ public class TouchScript : MonoBehaviour
     private Vector3 initTouch;
     private float rotX;
     private float rotY;
+    private bool _inside;
+
+    public Transform point1;
+    public Transform point2;
+    public float SensevityScale;
 
     private void Start()
     {
@@ -45,6 +50,15 @@ public class TouchScript : MonoBehaviour
             Stat = state.setpoint;
             setPos = true;
         }
+		if (str == "inside")
+		{
+            Stat = state.inside;
+            _inside = true;
+		}
+		if (str == "scale")
+		{
+            Stat = state.scale;
+		}
         text.text = Stat.ToString();
     }
 
@@ -170,6 +184,10 @@ public class TouchScript : MonoBehaviour
                 }
 
                 break;
+            case state.scale:
+              
+                break;
+
         }
 
 
@@ -292,5 +310,14 @@ public class TouchScript : MonoBehaviour
                 break;
         }
     }
+	public void Inside()
+	{
+
+		objectScript objTemp = (objectScript)FindObjectOfType(typeof(objectScript));
+		if (objTemp != null)
+		{
+            objTemp.Inside();			
+		}
+	}
 }
 

@@ -1,0 +1,385 @@
+fileFormatVersion: 2
+guid: 637cfe59008fe4d619a1049d19e9361a
+timeCreated: 1503394554
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Aushan_Logo_1
+    100004: Aushan_Logo_2
+    100006: Belie
+    100008: Belie 1
+    100010: Bit_Tehnika
+    100012: Bit_Tehnika 1
+    100014: Columns
+    100016: Comp
+    100018: Comp 1
+    100020: Doors
+    100022: Doors_MeshPart0
+    100024: Doors_MeshPart1
+    100026: Eda_Napitki
+    100028: Eda_Napitki 1
+    100030: Floor_FLOORTAG
+    100032: Hleb
+    100034: Hleb 1
+    100036: Holo_Holder
+    100038: Holo_Holder 1
+    100040: Holod
+    100042: Holod 1
+    100044: Holod 2
+    100046: Holod 3
+    100048: Inner_Walls
+    100050: Kassa
+    100052: Logo_Green_Parts
+    100054: Logo_Green_Parts 1
+    100056: Logo_Red_Parts
+    100058: Logo_Red_Parts 1
+    100060: Logo_White_Parts
+    100062: Logo_White_Parts 1
+    100064: LOGOs
+    100066: Myaso
+    100068: Myaso 1
+    100070: Outer_Walls
+    100072: Ovoshi
+    100074: Ovoshi 1
+    100076: polySurface1
+    100078: polySurface10
+    100080: polySurface11
+    100082: polySurface12
+    100084: polySurface13
+    100086: polySurface14
+    100088: polySurface2
+    100090: polySurface3
+    100092: polySurface4
+    100094: polySurface5
+    100096: polySurface6
+    100098: polySurface7
+    100100: polySurface8
+    100102: polySurface9
+    100104: Revoliving_Doors
+    100106: Roof_ROOFTAG
+    100108: Secondary
+    100110: Shelves_SHELVETAG1
+    100112: Shelves_SHELVETAG2
+    100114: Signs_SIGNSTAG_orig1
+    100116: Signs_SIGNSTAG_orig1_Adds
+    100118: Signs_SIGNSTAG_orig1_Shelves
+    100120: Skidki
+    100122: Skidki 1
+    100124: Small_Shelves
+    100126: Small_Shelves 1
+    100128: Torti
+    100130: Torti 1
+    100132: transform1
+    100134: Travalator
+    100136: Walls_WALLSTAG
+    400000: //RootNode
+    400002: Aushan_Logo_1
+    400004: Aushan_Logo_2
+    400006: Belie
+    400008: Belie 1
+    400010: Bit_Tehnika
+    400012: Bit_Tehnika 1
+    400014: Columns
+    400016: Comp
+    400018: Comp 1
+    400020: Doors
+    400022: Doors_MeshPart0
+    400024: Doors_MeshPart1
+    400026: Eda_Napitki
+    400028: Eda_Napitki 1
+    400030: Floor_FLOORTAG
+    400032: Hleb
+    400034: Hleb 1
+    400036: Holo_Holder
+    400038: Holo_Holder 1
+    400040: Holod
+    400042: Holod 1
+    400044: Holod 2
+    400046: Holod 3
+    400048: Inner_Walls
+    400050: Kassa
+    400052: Logo_Green_Parts
+    400054: Logo_Green_Parts 1
+    400056: Logo_Red_Parts
+    400058: Logo_Red_Parts 1
+    400060: Logo_White_Parts
+    400062: Logo_White_Parts 1
+    400064: LOGOs
+    400066: Myaso
+    400068: Myaso 1
+    400070: Outer_Walls
+    400072: Ovoshi
+    400074: Ovoshi 1
+    400076: polySurface1
+    400078: polySurface10
+    400080: polySurface11
+    400082: polySurface12
+    400084: polySurface13
+    400086: polySurface14
+    400088: polySurface2
+    400090: polySurface3
+    400092: polySurface4
+    400094: polySurface5
+    400096: polySurface6
+    400098: polySurface7
+    400100: polySurface8
+    400102: polySurface9
+    400104: Revoliving_Doors
+    400106: Roof_ROOFTAG
+    400108: Secondary
+    400110: Shelves_SHELVETAG1
+    400112: Shelves_SHELVETAG2
+    400114: Signs_SIGNSTAG_orig1
+    400116: Signs_SIGNSTAG_orig1_Adds
+    400118: Signs_SIGNSTAG_orig1_Shelves
+    400120: Skidki
+    400122: Skidki 1
+    400124: Small_Shelves
+    400126: Small_Shelves 1
+    400128: Torti
+    400130: Torti 1
+    400132: transform1
+    400134: Travalator
+    400136: Walls_WALLSTAG
+    2300000: Belie
+    2300002: Belie 1
+    2300004: Bit_Tehnika
+    2300006: Bit_Tehnika 1
+    2300008: Columns
+    2300010: Comp
+    2300012: Comp 1
+    2300014: Doors_MeshPart0
+    2300016: Doors_MeshPart1
+    2300018: Eda_Napitki 1
+    2300020: Floor_FLOORTAG
+    2300022: Hleb
+    2300024: Hleb 1
+    2300026: Holo_Holder
+    2300028: Holo_Holder 1
+    2300030: Holod 2
+    2300032: Holod 3
+    2300034: Inner_Walls
+    2300036: Kassa
+    2300038: Logo_Green_Parts
+    2300040: Logo_Green_Parts 1
+    2300042: Logo_Red_Parts
+    2300044: Logo_Red_Parts 1
+    2300046: Logo_White_Parts
+    2300048: Logo_White_Parts 1
+    2300050: Myaso
+    2300052: Myaso 1
+    2300054: Outer_Walls
+    2300056: Ovoshi
+    2300058: Ovoshi 1
+    2300060: polySurface1
+    2300062: polySurface10
+    2300064: polySurface11
+    2300066: polySurface12
+    2300068: polySurface13
+    2300070: polySurface14
+    2300072: polySurface2
+    2300074: polySurface3
+    2300076: polySurface4
+    2300078: polySurface5
+    2300080: polySurface6
+    2300082: polySurface7
+    2300084: polySurface8
+    2300086: polySurface9
+    2300088: Revoliving_Doors
+    2300090: Roof_ROOFTAG
+    2300092: Signs_SIGNSTAG_orig1_Adds
+    2300094: Signs_SIGNSTAG_orig1_Shelves
+    2300096: Skidki
+    2300098: Skidki 1
+    2300100: Small_Shelves
+    2300102: Small_Shelves 1
+    2300104: Torti
+    2300106: Torti 1
+    2300108: Travalator
+    3300000: Belie
+    3300002: Belie 1
+    3300004: Bit_Tehnika
+    3300006: Bit_Tehnika 1
+    3300008: Columns
+    3300010: Comp
+    3300012: Comp 1
+    3300014: Doors_MeshPart0
+    3300016: Doors_MeshPart1
+    3300018: Eda_Napitki 1
+    3300020: Floor_FLOORTAG
+    3300022: Hleb
+    3300024: Hleb 1
+    3300026: Holo_Holder
+    3300028: Holo_Holder 1
+    3300030: Holod 2
+    3300032: Holod 3
+    3300034: Inner_Walls
+    3300036: Kassa
+    3300038: Logo_Green_Parts
+    3300040: Logo_Green_Parts 1
+    3300042: Logo_Red_Parts
+    3300044: Logo_Red_Parts 1
+    3300046: Logo_White_Parts
+    3300048: Logo_White_Parts 1
+    3300050: Myaso
+    3300052: Myaso 1
+    3300054: Outer_Walls
+    3300056: Ovoshi
+    3300058: Ovoshi 1
+    3300060: polySurface1
+    3300062: polySurface10
+    3300064: polySurface11
+    3300066: polySurface12
+    3300068: polySurface13
+    3300070: polySurface14
+    3300072: polySurface2
+    3300074: polySurface3
+    3300076: polySurface4
+    3300078: polySurface5
+    3300080: polySurface6
+    3300082: polySurface7
+    3300084: polySurface8
+    3300086: polySurface9
+    3300088: Revoliving_Doors
+    3300090: Roof_ROOFTAG
+    3300092: Signs_SIGNSTAG_orig1_Adds
+    3300094: Signs_SIGNSTAG_orig1_Shelves
+    3300096: Skidki
+    3300098: Skidki 1
+    3300100: Small_Shelves
+    3300102: Small_Shelves 1
+    3300104: Torti
+    3300106: Torti 1
+    3300108: Travalator
+    4300000: Signs_SIGNSTAG_orig1_Adds
+    4300002: Signs_SIGNSTAG_orig1_Shelves
+    4300004: Floor_FLOORTAG
+    4300006: Outer_Walls
+    4300008: Inner_Walls
+    4300010: Doors_MeshPart0
+    4300012: Doors_MeshPart1
+    4300014: Revoliving_Doors
+    4300016: Columns
+    4300018: Travalator
+    4300020: Kassa
+    4300022: Myaso
+    4300024: polySurface1
+    4300026: polySurface2
+    4300028: polySurface3
+    4300030: polySurface4
+    4300032: polySurface5
+    4300034: polySurface6
+    4300036: polySurface7
+    4300038: polySurface8
+    4300040: polySurface9
+    4300042: polySurface10
+    4300044: polySurface11
+    4300046: polySurface12
+    4300048: polySurface13
+    4300050: polySurface14
+    4300052: Bit_Tehnika
+    4300054: Comp
+    4300056: Skidki
+    4300058: Belie
+    4300060: Ovoshi
+    4300062: Hleb
+    4300064: Torti
+    4300066: Small_Shelves
+    4300068: Holo_Holder
+    4300070: Holod
+    4300072: Myaso
+    4300074: Eda_Napitki
+    4300076: Bit_Tehnika
+    4300078: Comp
+    4300080: Skidki
+    4300082: Belie
+    4300084: Ovoshi
+    4300086: Hleb
+    4300088: Torti
+    4300090: Small_Shelves
+    4300092: Holo_Holder
+    4300094: Holod
+    4300096: Roof_ROOFTAG
+    4300098: Logo_Green_Parts
+    4300100: Logo_Red_Parts
+    4300102: Logo_White_Parts
+    4300104: Logo_Green_Parts
+    4300106: Logo_Red_Parts
+    4300108: Logo_White_Parts
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
