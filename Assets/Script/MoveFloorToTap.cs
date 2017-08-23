@@ -72,7 +72,7 @@ public class MoveFloorToTap : MonoBehaviour
             _moveCorutine = true;
             StartCoroutine(moveToPosition(_stage.transform.position, SpotPosition));
             // GetComponentInChildren<Collider>().enabled=false;
-            GetComponentInChildren<Rigidbody>().isKinematic = true;
+           // GetComponentInChildren<Rigidbody>().isKinematic = true;
         }
     }
 
@@ -88,13 +88,13 @@ public class MoveFloorToTap : MonoBehaviour
             yield return null;
         }
         // GetComponentInChildren<Collider>().enabled = true;
-        GetComponentInChildren<Rigidbody>().isKinematic = false;
+        //GetComponentInChildren<Rigidbody>().isKinematic = false;
         _move = false;
         _moveCorutine = false;
     }
     private void controlKeys()//команды управления.
     {
-        if (!_move)
+        if (!_move && _stage)
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
@@ -141,8 +141,14 @@ public class MoveFloorToTap : MonoBehaviour
                 }
                 break;
             case _state.walk:
-                return;
-                _stage.transform.Translate(hiro.transform.forward * -Time.deltaTime * 5, Space.World);
+                Debug.Log("Walk");
+#if UNITY_EDITOR
+               
+				Vector3 dir = Camera.main.transform.forward;
+				dir.y = 0f;
+				_stage.transform.Translate(dir * -Time.deltaTime * 5, Space.World);
+            
+#endif
                 break;
         }
     }
@@ -150,13 +156,22 @@ public class MoveFloorToTap : MonoBehaviour
     {
 		_stage.transform.Translate(hiro.transform.forward * -Time.deltaTime * 5, Space.World);
 	}
+	public void jumpToSpot()
+	{
+		if (rayCaster(Camera.main.transform.position, Camera.main.transform.forward))
+		{
+			rayCaster(new Vector3(hitTo.x, hitTo.y + hitDowns, hitTo.z), Vector3.down);
+			CalculateMove(hitTo);
+		}
+	}
         
     private void CalculateMove(Vector3 hitToPos)
     {
         ignoreColider = floorColider;
-        float heghtHiro = GetComponentInChildren<Collider>().bounds.size.y / 2;
+        float heghtHiro = 1.8f / 2; //GetComponentInChildren<Collider>().bounds.size.y / 2;
         SpotPosition = _stage.transform.position + new Vector3(transform.position.x, transform.position.y - heghtHiro, transform.position.z) - hitToPos;
         instatientPatchSpot(SpotPosition);
+
         if (moveTo)
         {
             _move = true;
@@ -164,6 +179,7 @@ public class MoveFloorToTap : MonoBehaviour
     }
     private void instatientPatchSpot(Vector3 posSpot)
     {
+        spotPatch.transform.parent = _stage.transform;
         spotPatch.transform.localPosition = _stage.transform.InverseTransformPoint(hitTo);
     }
     private bool rayCaster(Vector3 positionRay, Vector3 dir)
@@ -174,10 +190,10 @@ public class MoveFloorToTap : MonoBehaviour
         {
             RaycastHit hit = hits[i];
             Collider Hit = hit.transform.GetComponent<Collider>();
-            Debug.DrawRay(positionRay, dir, Color.red);
+            Debug.DrawRay(positionRay, dir*1000, Color.blue);
             if (Hit)
             {
-                if (hit.collider.tag == _floorNameTag && hit.collider!= ignoreColider)
+                if (hit.collider.tag == _floorNameTag ) //&& hit.collider!= ignoreColider)
                 {
                     hitDowns = hit.collider.gameObject.GetComponent<Renderer>().bounds.size.y + 0.1f;
                     floorColider = hit.collider;

@@ -7,6 +7,14 @@ public class objectScript : MonoBehaviour {
     public GameObject objParent;
     private Camera cam;
     public float scalleSmallFactor;
+
+
+    private void Awake(){
+        objParent.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        objParent.transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
+    }
+
+
 	public void LookAT()
 
     {

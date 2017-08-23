@@ -20,16 +20,11 @@ public class TouchScript : MonoBehaviour
     private GameObject tempObjec = null;
 
     private float rotationSpeed = 1f;
-    private Vector3 initTouch;
-    private float rotX;
-    private float rotY;
     private bool _inside;
 
     public GameObject point1;
     public GameObject point2;
-    public float SensevityScale = 0.001f;
-	private float distanceOld;
-	private float distance;
+    public float SensevityScale = 0.0001f;
 
     private void Start()
     {
@@ -74,290 +69,304 @@ public class TouchScript : MonoBehaviour
 
     void Update()
     {
+        if (!_inside)
+        {
 #if UNITY_EDITOR
 
-        switch (Stat)
-        {
-            case state.move:
+            switch (Stat)
+            {
+                case state.move:
 
-                if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0))
+                    if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0))
 
-                {
-                    touchesOld = new GameObject[touchList.Count];
-                    touchList.CopyTo(touchesOld);
-                    touchList.Clear();
-
-
-                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
-
-                    if (Physics.Raycast(ray, out hit, touchInputMask))
                     {
-                        GameObject recipient = hit.transform.gameObject;
-                        touchList.Add(recipient);
+                        touchesOld = new GameObject[touchList.Count];
+                        touchList.CopyTo(touchesOld);
+                        touchList.Clear();
 
-                        if (Input.GetMouseButtonDown(0))
+
+                        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                        Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
+
+                        if (Physics.Raycast(ray, out hit, touchInputMask))
                         {
+                            GameObject recipient = hit.transform.gameObject;
+                            touchList.Add(recipient);
 
-                            Debug.Log("pressDown");
-                            dist = hit.distance; //hit.distance + Camera.main.nearClipPlane;
-                            trim = hit.collider.transform.position - hit.point;
-                            recipient.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
+                            if (Input.GetMouseButtonDown(0))
+                            {
 
+                                Debug.Log("pressDown");
+                                dist = hit.distance; //hit.distance + Camera.main.nearClipPlane;
+                                trim = hit.collider.transform.position - hit.point;
+                             //   recipient.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
+
+                            }
+                            if (Input.GetMouseButtonUp(0))
+                            {
+                                //recipient.SendMessage("OnTouchUP", hit.point, SendMessageOptions.DontRequireReceiver);
+                            }
+                            if (Input.GetMouseButton(0))
+                            {
+                                Debug.Log("mouseButton");
+                                Vector3 pos = Input.mousePosition;
+                                pos.z = dist;
+                                //pos = ray.origin + ray.direction * dist;
+                                //pos = ray.direction+ trim;
+                                pos = Camera.main.ScreenToWorldPoint(pos) + trim; // это новая координата
+
+
+                                //if (recipient.GetComponent<Booton>())
+                                //{
+                                //    recipient.GetComponent<Booton>().touchPosition = pos;
+                                //}
+                                //recipient.SendMessage("OnTouchStay", hit.point, SendMessageOptions.DontRequireReceiver);
+                                if (recipient.tag == "stage")
+                                {
+                                    recipient.transform.position = pos;
+                                }
+                            }
                         }
-                        if (Input.GetMouseButtonUp(0))
+                        foreach (var g in touchesOld)
                         {
-                            recipient.SendMessage("OnTouchUP", hit.point, SendMessageOptions.DontRequireReceiver);
+
+                            if (!touchList.Contains(g))
+                            {
+                                g.SendMessage("OnTouchExit", hit.point, SendMessageOptions.DontRequireReceiver);
+                            }
                         }
-                        if (Input.GetMouseButton(0))
+                    }
+                    break;
+
+                //поворот
+                case state.rotation:
+                    if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0))
+
+                    {
+                        touchesOld = new GameObject[touchList.Count];
+                        touchList.CopyTo(touchesOld);
+                        touchList.Clear();
+
+
+
+
+                        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                        Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
+
+                        if (Physics.Raycast(ray, out hit, touchInputMask))
                         {
-                            Debug.Log("mouseButton");
-                            Vector3 pos = Input.mousePosition;
-                            pos.z = dist;
-                            //pos = ray.origin + ray.direction * dist;
-                            //pos = ray.direction+ trim;
-                            pos = Camera.main.ScreenToWorldPoint(pos) + trim; // это новая координата
-
-
-                            //if (recipient.GetComponent<Booton>())
-                            //{
-                            //    recipient.GetComponent<Booton>().touchPosition = pos;
+                            GameObject recipient = hit.transform.gameObject;
+                            touchList.Add(recipient);
+                            //if(recipient.transform.position== new Vector3(0,0,0)){
+                            //    recipient.transform.position = recipient.transform.position;
                             //}
-                            recipient.SendMessage("OnTouchStay", hit.point, SendMessageOptions.DontRequireReceiver);
-                            recipient.transform.position = pos;
+
+                            if (Input.GetMouseButtonDown(0))
+                            {
+                                // recipient.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
+                                tempObjec = recipient;
+                            }
+                            if (Input.GetMouseButtonUp(0))
+                            {
+                                tempObjec = null;
+                                //recipient.SendMessage("OnTouchUP", hit.point, SendMessageOptions.DontRequireReceiver);
+
+                            }
+                            if (tempObjec && Input.GetMouseButton(0))
+                            {
+
+                                //recipient.SendMessage("OnTouchStay", hit.point, SendMessageOptions.DontRequireReceiver);
+                                if (recipient.tag == "stage")
+                                {
+                                    float rotX = Input.GetAxis(("Mouse X")) * rotationSpeed;
+                                    float rotY = Input.GetAxis(("Mouse Y")) * rotationSpeed;
+                                    tempObjec.transform.Rotate(Vector3.up, -rotX, Space.World);
+                                    tempObjec.transform.Rotate(Vector3.up, -rotY, Space.World);
+                                }
+
+                            }
+                        }
+                        foreach (var g in touchesOld)
+                        {
+
+                            if (!touchList.Contains(g))
+                            {
+                                g.SendMessage("OnTouchExit", hit.point, SendMessageOptions.DontRequireReceiver);
+                            }
                         }
                     }
-                    foreach (var g in touchesOld)
+
+                    break;
+
+                case state.scale:
+
+
+
+                    if (Input.GetAxis("Mouse ScrollWheel") != 0)
                     {
+                       
+                            objectScript script = (objectScript)FindObjectOfType(typeof(objectScript));
+                            script.Scale(Input.GetAxis("Mouse ScrollWheel") * SensevityScale);
 
-                        if (!touchList.Contains(g))
-                        {
-                            g.SendMessage("OnTouchExit", hit.point, SendMessageOptions.DontRequireReceiver);
-                        }
                     }
-                }
-                break;
-
-            //поворот
-            case state.rotation:
-                if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0))
-
-                {
-                    touchesOld = new GameObject[touchList.Count];
-                    touchList.CopyTo(touchesOld);
-                    touchList.Clear();
+                    break;
 
 
-
-
-                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
-
-                    if (Physics.Raycast(ray, out hit, touchInputMask))
-                    {
-                        GameObject recipient = hit.transform.gameObject;
-                        touchList.Add(recipient);
-                        if(recipient.transform.position== new Vector3(0,0,0)){
-                            recipient.transform.position = recipient.transform.position;
-                        }
-
-                        if (Input.GetMouseButtonDown(0))
-                        {
-                           // recipient.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
-                            tempObjec = recipient;
-                        }
-                        if (Input.GetMouseButtonUp(0))
-                        {
-                            tempObjec = null;
-                            //recipient.SendMessage("OnTouchUP", hit.point, SendMessageOptions.DontRequireReceiver);
-
-                        }
-                        if (tempObjec && Input.GetMouseButton(0))
-                        {
-
-                            //recipient.SendMessage("OnTouchStay", hit.point, SendMessageOptions.DontRequireReceiver);
-                            float rotX = Input.GetAxis(("Mouse X")) * rotationSpeed;
-                            float rotY = Input.GetAxis(("Mouse Y")) * rotationSpeed;
-                            tempObjec.transform.Rotate(Vector3.up, -rotX, Space.World);
-                            tempObjec.transform.Rotate(Vector3.up, -rotY, Space.World);
-
-                        }
-                    }
-                    foreach (var g in touchesOld)
-                    {
-
-                        if (!touchList.Contains(g))
-                        {
-                            g.SendMessage("OnTouchExit", hit.point, SendMessageOptions.DontRequireReceiver);
-                        }
-                    }
-                }
-
-                break;
-
-            case state.scale:
-
-                                        
-                           
-                if (Input.GetAxis("Mouse ScrollWheel")!=0)
-                {
-					objectScript script = (objectScript)FindObjectOfType(typeof(objectScript));
-                    script.Scale(Input.GetAxis("Mouse ScrollWheel")*SensevityScale);
-                }
-                break;
-        
-
-        }
+            }
 
 
 
 #endif
 
-        switch (Stat)
-        {
+            switch (Stat)
+            {
 
-            case state.move:
+                case state.move:
 
-                if (Input.touchCount > 0)
-                {
-                    touchesOld = new GameObject[touchList.Count];
-                    touchList.CopyTo(touchesOld);
-                    touchList.Clear();
-
-                    foreach (var touch in Input.touches)
+                    if (Input.touchCount > 0)
                     {
+                        touchesOld = new GameObject[touchList.Count];
+                        touchList.CopyTo(touchesOld);
+                        touchList.Clear();
 
-                        Ray ray = Camera.main.ScreenPointToRay(touch.position);
-                        RaycastHit hit;
-                        if (Physics.Raycast(ray, out hit, touchInputMask))
+                        foreach (var touch in Input.touches)
                         {
-                            GameObject recipient = hit.transform.gameObject;
-                            touchList.Add(recipient);
-                            if (touch.phase == TouchPhase.Began)
-                            {
-                                dist = hit.distance;
-                                trim = hit.collider.transform.position - hit.point;
-                                recipient.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
-                                //  recipient.GetComponent<Booton>().touchPosition = touch.position;
-                            }
-                            if (touch.phase == TouchPhase.Ended)
-                            {
-                                recipient.SendMessage("OnTouchUP", hit.point, SendMessageOptions.DontRequireReceiver);
-                            }
-                            if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
-                            {
-                                Vector3 pos = touch.position;
-                                pos.z = dist;
-                                pos = Camera.main.ScreenToWorldPoint(pos) + trim; // это новая координата
-                                recipient.GetComponent<Booton>().touchPosition = pos;
-                                recipient.SendMessage("OnTouchStay", hit.point, SendMessageOptions.DontRequireReceiver);
 
-                            }
-                            if (touch.phase == TouchPhase.Canceled)
+                            Ray ray = Camera.main.ScreenPointToRay(touch.position);
+                            RaycastHit hit;
+                            if (Physics.Raycast(ray, out hit, touchInputMask))
                             {
-                                recipient.SendMessage("OnTouchExit", hit.point, SendMessageOptions.DontRequireReceiver);
+                                GameObject recipient = hit.transform.gameObject;
+                                touchList.Add(recipient);
+                                if (touch.phase == TouchPhase.Began)
+                                {
+                                    dist = hit.distance;
+                                    trim = hit.collider.transform.position - hit.point;
+                                    recipient.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
+                                    //  recipient.GetComponent<Booton>().touchPosition = touch.position;
+                                }
+                                if (touch.phase == TouchPhase.Ended)
+                                {
+                                    recipient.SendMessage("OnTouchUP", hit.point, SendMessageOptions.DontRequireReceiver);
+                                }
+                                if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
+                                {
+                                    Vector3 pos = touch.position;
+                                    pos.z = dist;
+                                    pos = Camera.main.ScreenToWorldPoint(pos) + trim; // это новая координата
+
+                                        recipient.transform.position = pos;
+
+                                    //recipient.GetComponent<Booton>().touchPosition = pos;
+                                    //recipient.SendMessage("OnTouchStay", hit.point, SendMessageOptions.DontRequireReceiver);
+
+                                }
+                                if (touch.phase == TouchPhase.Canceled)
+                                {
+                                    recipient.SendMessage("OnTouchExit", hit.point, SendMessageOptions.DontRequireReceiver);
+                                }
                             }
                         }
-                    }
-                    foreach (var g in touchesOld)
-                    {
-                        if (!touchList.Contains(g))
+                        foreach (var g in touchesOld)
                         {
-                            g.SendMessage("OnTouchExit", hit.point, SendMessageOptions.DontRequireReceiver);
+                            if (!touchList.Contains(g))
+                            {
+                                g.SendMessage("OnTouchExit", hit.point, SendMessageOptions.DontRequireReceiver);
+                            }
                         }
+
                     }
+                    break;
+                case state.rotation:
 
-                }
-                break;
-            case state.rotation:
+                    if (Input.touchCount > 0)
+                    {
+                        touchesOld = new GameObject[touchList.Count];
+                        touchList.CopyTo(touchesOld);
+                        touchList.Clear();
 
-				if (Input.touchCount > 0)
-				{
-					touchesOld = new GameObject[touchList.Count];
-					touchList.CopyTo(touchesOld);
-					touchList.Clear();
+                        foreach (var touch in Input.touches)
+                        {
 
-					foreach (var touch in Input.touches)
-					{
+                            Ray ray = Camera.main.ScreenPointToRay(touch.position);
+                            RaycastHit hit;
+                            if (Physics.Raycast(ray, out hit, touchInputMask))
+                            {
+                                GameObject recipient = hit.transform.gameObject;
+                                touchList.Add(recipient);
+                                if (touch.phase == TouchPhase.Began)
+                                {
+                                    tempObjec = recipient;
+                                    recipient.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
 
-						Ray ray = Camera.main.ScreenPointToRay(touch.position);
-						RaycastHit hit;
-						if (Physics.Raycast(ray, out hit, touchInputMask))
-						{
-							GameObject recipient = hit.transform.gameObject;
-							touchList.Add(recipient);
-							if (touch.phase == TouchPhase.Began)
-							{
-								tempObjec = recipient;                              
-								recipient.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
-								
-							}
-							if (touch.phase == TouchPhase.Ended)
-							{
-								recipient.SendMessage("OnTouchUP", hit.point, SendMessageOptions.DontRequireReceiver);
-                                tempObjec = null;
+                                }
+                                if (touch.phase == TouchPhase.Ended)
+                                {
+                                    recipient.SendMessage("OnTouchUP", hit.point, SendMessageOptions.DontRequireReceiver);
+                                    tempObjec = null;
 
 
-							}
-                            if (tempObjec && touch.phase == TouchPhase.Moved)
-							{
-                                recipient.SendMessage("OnTouchStay", hit.point, SendMessageOptions.DontRequireReceiver);
+                                }
+                                if (tempObjec && touch.phase == TouchPhase.Moved)
+                                {
+                                    // recipient.SendMessage("OnTouchStay", hit.point, SendMessageOptions.DontRequireReceiver);
 
-                                float rotX = touch.deltaPosition.x * rotationSpeed;
-								float rotY = touch.deltaPosition.y * rotationSpeed;
-                                tempObjec.transform.Rotate(Vector3.up, -rotX,Space.World);
-                                tempObjec.transform.Rotate(Vector3.up, -rotY,Space.World);
-                                                      
-
-							}
-							if (touch.phase == TouchPhase.Canceled)
-							{
-								recipient.SendMessage("OnTouchExit", hit.point, SendMessageOptions.DontRequireReceiver);
-                               // tempObjec = null;
-							}
-						}
-					}
-					foreach (var g in touchesOld)
-					{
-						if (!touchList.Contains(g))
-						{
-							g.SendMessage("OnTouchExit", hit.point, SendMessageOptions.DontRequireReceiver);
-						}
-					}
-
-				}
-                break;
-			case state.scale:
-                if (Input.touchCount == 2)
-                {
-                  
-                    Touch touchZero = Input.GetTouch(0);
-                    Touch touchOne = Input.GetTouch(1);
-
-             
-                    Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
-                    Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
-
-                 
-                    float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
-                    float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
+                                        float rotX = touch.deltaPosition.x * rotationSpeed;
+                                        float rotY = touch.deltaPosition.y * rotationSpeed;
+                                        tempObjec.transform.Rotate(Vector3.up, -rotX, Space.World);
+                                        tempObjec.transform.Rotate(Vector3.up, -rotY, Space.World);
 
 
-                    float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
+                                }
+                                if (touch.phase == TouchPhase.Canceled)
+                                {
+                                   // recipient.SendMessage("OnTouchExit", hit.point, SendMessageOptions.DontRequireReceiver);
+                                    // tempObjec = null;
+                                }
+                            }
+                        }
+                        foreach (var g in touchesOld)
+                        {
+                            if (!touchList.Contains(g))
+                            {
+                                g.SendMessage("OnTouchExit", hit.point, SendMessageOptions.DontRequireReceiver);
+                            }
+                        }
 
-                  
+                    }
+                    break;
+                case state.scale:
+                    if (Input.touchCount == 2)
+                    {
+
+                        Touch touchZero = Input.GetTouch(0);
+                        Touch touchOne = Input.GetTouch(1);
+
+
+                        Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
+                        Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
+
+
+                        float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
+                        float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
+
+
+                        float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
+
+
                         objectScript script = (objectScript)FindObjectOfType(typeof(objectScript));
 
-                        
-                    script.Scale(deltaMagnitudeDiff * SensevityScale);
+                       
+                            script.Scale(deltaMagnitudeDiff * SensevityScale);
+                      
+
+                    }
 
 
+                    break;
 
-                }
-		
-					
-				break;
 
+            }
         }
     }
 	public void Inside()
@@ -366,6 +375,11 @@ public class TouchScript : MonoBehaviour
 		objectScript objTemp = (objectScript)FindObjectOfType(typeof(objectScript));
 		if (objTemp != null)
 		{
+            if(!_inside){
+                _inside = true;
+            }else{
+                _inside = false;
+            }
             objTemp.Inside();			
 		}
 	}

@@ -69,7 +69,7 @@ public class MouseLook : MonoBehaviour
             Quaternion rotationX = Quaternion.AngleAxis(-vertical, Vector3.right);
 
             transform.rotation = origRotation * rotationY * rotationX;
-            EventRotation(rotationY);
+                //EventRotation(rotationY);
             
 
         }
