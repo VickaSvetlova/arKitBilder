@@ -32,7 +32,10 @@ public class objectScript : MonoBehaviour {
         inside = !inside;
     }
     public void Scale(float scaleFactor){
-        objParent.transform.localScale = new Vector3(objParent.transform.localScale.x+scaleFactor, objParent.transform.localScale.y+scaleFactor, objParent.transform.localScale.z+scaleFactor);
+
+
+        objParent.transform.localScale += Vector3.one*scaleFactor;
+
 
     }
    

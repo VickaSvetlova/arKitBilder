@@ -27,7 +27,7 @@ public class TouchScript : MonoBehaviour
 
     public GameObject point1;
     public GameObject point2;
-    public float SensevityScale;
+    public float SensevityScale = 0.001f;
 	private float distanceOld;
 	private float distance;
 
@@ -66,6 +66,7 @@ public class TouchScript : MonoBehaviour
 
     public void changeSens(float sens){
         rotationSpeed = sens;
+        SensevityScale = sens;
         text.text = ""+rotationSpeed;
 
     }
@@ -117,8 +118,13 @@ public class TouchScript : MonoBehaviour
                             //pos = ray.direction+ trim;
                             pos = Camera.main.ScreenToWorldPoint(pos) + trim; // это новая координата
 
-                            recipient.GetComponent<Booton>().touchPosition = pos;
+
+                            //if (recipient.GetComponent<Booton>())
+                            //{
+                            //    recipient.GetComponent<Booton>().touchPosition = pos;
+                            //}
                             recipient.SendMessage("OnTouchStay", hit.point, SendMessageOptions.DontRequireReceiver);
+                            recipient.transform.position = pos;
                         }
                     }
                     foreach (var g in touchesOld)
@@ -151,23 +157,25 @@ public class TouchScript : MonoBehaviour
                     {
                         GameObject recipient = hit.transform.gameObject;
                         touchList.Add(recipient);
-
+                        if(recipient.transform.position== new Vector3(0,0,0)){
+                            recipient.transform.position = recipient.transform.position;
+                        }
 
                         if (Input.GetMouseButtonDown(0))
                         {
-                            recipient.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
+                           // recipient.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
                             tempObjec = recipient;
                         }
                         if (Input.GetMouseButtonUp(0))
                         {
                             tempObjec = null;
-                            recipient.SendMessage("OnTouchUP", hit.point, SendMessageOptions.DontRequireReceiver);
+                            //recipient.SendMessage("OnTouchUP", hit.point, SendMessageOptions.DontRequireReceiver);
 
                         }
                         if (tempObjec && Input.GetMouseButton(0))
                         {
 
-                            recipient.SendMessage("OnTouchStay", hit.point, SendMessageOptions.DontRequireReceiver);
+                            //recipient.SendMessage("OnTouchStay", hit.point, SendMessageOptions.DontRequireReceiver);
                             float rotX = Input.GetAxis(("Mouse X")) * rotationSpeed;
                             float rotY = Input.GetAxis(("Mouse Y")) * rotationSpeed;
                             tempObjec.transform.Rotate(Vector3.up, -rotX, Space.World);
@@ -189,31 +197,13 @@ public class TouchScript : MonoBehaviour
 
             case state.scale:
 
-                return;
-                //        distanceOld = Vector3.Distance(point1.transform.position, point2.transform.position);
-                  
-                   
-                //        distance = Vector3.Distance(point1.transform.position, point2.transform.position);
-                        
-                //if (distance != distanceOld)
-                        //{
-                        //    objectScript script = (objectScript)FindObjectOfType(typeof(objectScript));
-
-                        //    if (distance > distanceOld)
-                        //    {
-
-                        //        SensevityScale += 0.1f;
-                        //        script.Scale(SensevityScale);
-                        //    }
-                        //    else
-                        //    {
-                        //       SensevityScale -= 0.1f;
-                        //        script.Scale(SensevityScale);
-                        //    }
-
-                        //}
-                        //distanceOld = distance;distance
-                    
+                                        
+                           
+                if (Input.GetAxis("Mouse ScrollWheel")!=0)
+                {
+					objectScript script = (objectScript)FindObjectOfType(typeof(objectScript));
+                    script.Scale(Input.GetAxis("Mouse ScrollWheel")*SensevityScale);
+                }
                 break;
         
 
@@ -340,26 +330,26 @@ public class TouchScript : MonoBehaviour
 			case state.scale:
                 if (Input.touchCount == 2)
                 {
-                    // Store both touches.
+                  
                     Touch touchZero = Input.GetTouch(0);
                     Touch touchOne = Input.GetTouch(1);
 
-                    // Find the position in the previous frame of each touch.
+             
                     Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
                     Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
 
-                    // Find the magnitude of the vector (the distance) between the touches in each frame.
+                 
                     float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
                     float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
 
-                    // Find the difference in the distances between each frame.
+
                     float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
 
                   
                         objectScript script = (objectScript)FindObjectOfType(typeof(objectScript));
 
-                        // ... change the orthographic size based on the change in distance between the touches.
-                        script.scalleSmallFactor += deltaMagnitudeDiff * 0.1f;
+                        
+                    script.Scale(deltaMagnitudeDiff * SensevityScale);
 
 
 
