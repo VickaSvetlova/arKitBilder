@@ -1,18 +1,15 @@
 ﻿<Properties StartupConfiguration="{13E22D6A-3D9E-9B1A-BB8C-586047BC2303}|">
-  <MonoDevelop.Ide.ItemProperties.arKitBilder PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/TouchScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/panelSet.cs">
     <Files>
-      <File FileName="Assets/Script/MoveFloorToTap.cs" Line="165" Column="4" />
-      <File FileName="Assets/Scripts/MouseLook.cs" Line="72" Column="3" />
-      <File FileName="Assets/UnityARKitPlugin/Plugins/iOS/UnityARKit/UnityARCameraManager.cs" Line="75" Column="1" />
-      <File FileName="Assets/Scripts/TouchScript.cs" Line="223" Column="17" />
+      <File FileName="Assets/Scripts/TouchScript.cs" Line="118" Column="1" />
+      <File FileName="Assets/Script/MoveFloorToTap.cs" Line="201" Column="1" />
+      <File FileName="Assets/Scripts/objectScript.cs" Line="28" Column="10" />
+      <File FileName="Assets/panelSet.cs" Line="18" Column="11" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/annasidorova/dev/arKitBilder/Assets/panelSet.cs" relfile="Assets/panelSet.cs" line="18" column="9" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />

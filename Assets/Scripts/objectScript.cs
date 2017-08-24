@@ -25,7 +25,7 @@ public class objectScript : MonoBehaviour {
     {
         if (!inside)
         {
-            Debug.Log("1:1");
+            //Debug.Log("1:1");
             objParent.transform.localScale = new Vector3(1, 1, 1);
             objParent.transform.position = Camera.main.transform.position;
 

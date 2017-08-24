@@ -37,6 +37,7 @@ public class MoveFloorToTap : MonoBehaviour
     private RaycastHit hitDown;
     private float hitDowns;
     public bool moveTo;
+    public bool ignoreFloor;
 
     private Collider floorColider;
     private Collider ignoreColider;
@@ -108,7 +109,7 @@ public class MoveFloorToTap : MonoBehaviour
             {
                 getFloor(_state.lookTap);
             }
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(3))
             {
                 getFloor(_state.walk);
             }
@@ -116,59 +117,70 @@ public class MoveFloorToTap : MonoBehaviour
     }
     private void getFloor(_state State)
     {
-        switch (State)
+        if (!_move)
         {
-            case _state.lookTap:
+            switch (State)
+            {
+                case _state.lookTap:
 
-                if (rayCaster(Camera.main.transform.position, Camera.main.transform.forward))
-                {
-                    rayCaster(new Vector3(hitTo.x, hitTo.y + hitDowns, hitTo.z), Vector3.down);
-                    CalculateMove(hitTo);
-                }
-                break;
-            case _state.up:
-                if (rayCaster(transform.position, Vector3.up))
-                {
-                    rayCaster(new Vector3(hitTo.x, hitTo.y + hitDowns, hitTo.z), Vector3.down);
-                    CalculateMove(hitTo);
-                }
-                break;
-            case _state.down:
-                if (rayCaster(transform.position, Vector3.down))
-                {
-                    rayCaster(new Vector3(hitTo.x, hitTo.y + hitDowns, hitTo.z), Vector3.down);
-                    CalculateMove(hitTo);
-                }
-                break;
-            case _state.walk:
-                Debug.Log("Walk");
-#if UNITY_EDITOR
-               
-				Vector3 dir = Camera.main.transform.forward;
-				dir.y = 0f;
-				_stage.transform.Translate(dir * -Time.deltaTime * 5, Space.World);
-            
-#endif
-                break;
+
+                    ignoreColider = null;
+
+                    if (rayCaster(Camera.main.transform.position, Camera.main.transform.forward))
+                    {
+                        rayCaster(new Vector3(hitTo.x, hitTo.y + hitDowns, hitTo.z), Vector3.down);
+                        CalculateMove(hitTo);
+                    }
+                    break;
+                case _state.up:
+					
+                    if (rayCaster(Camera.main.transform.position, Vector3.up))
+                    {
+                        rayCaster(new Vector3(hitTo.x, hitTo.y + hitDowns, hitTo.z), Vector3.up);
+                        CalculateMove(hitTo);
+                    }
+                    break;
+                case _state.down:
+					
+                    if (rayCaster(Camera.main.transform.position, Vector3.down))
+                    {
+                        rayCaster(new Vector3(hitTo.x, hitTo.y + hitDowns, hitTo.z), Vector3.down);
+                        CalculateMove(hitTo);
+                    }
+                    break;
+
+                case _state.walk:
+
+                    Debug.Log("Walk");
+                    Vector3 dir = Camera.main.transform.forward;
+                    dir.y = 0f;
+                    _stage.transform.Translate(dir * -Time.deltaTime * 5, Space.World);
+
+                    break;
+            }
         }
     }
+    //booton
     public void Forward()
     {
-		_stage.transform.Translate(hiro.transform.forward * -Time.deltaTime * 5, Space.World);
+        getFloor(_state.walk);
 	}
 	public void jumpToSpot()
 	{
-		if (rayCaster(Camera.main.transform.position, Camera.main.transform.forward))
-		{
-			rayCaster(new Vector3(hitTo.x, hitTo.y + hitDowns, hitTo.z), Vector3.down);
-			CalculateMove(hitTo);
-		}
+        ignoreColider = null;
+        getFloor(_state.lookTap);	
 	}
+    public void liftUp(){
+        getFloor(_state.up);
+    }
+    public void liftDown(){
+        getFloor(_state.down);
+    }
         
     private void CalculateMove(Vector3 hitToPos)
     {
         ignoreColider = floorColider;
-        float heghtHiro = 1.8f / 2; //GetComponentInChildren<Collider>().bounds.size.y / 2;
+        float heghtHiro = 1.8f;// / 2; //GetComponentInChildren<Collider>().bounds.size.y / 2;
         SpotPosition = _stage.transform.position + new Vector3(transform.position.x, transform.position.y - heghtHiro, transform.position.z) - hitToPos;
         instatientPatchSpot(SpotPosition);
 
@@ -182,34 +194,36 @@ public class MoveFloorToTap : MonoBehaviour
         spotPatch.transform.parent = _stage.transform;
         spotPatch.transform.localPosition = _stage.transform.InverseTransformPoint(hitTo);
     }
+
     private bool rayCaster(Vector3 positionRay, Vector3 dir)
     {
         RaycastHit[] hits;
+
         hits = Physics.RaycastAll(positionRay, dir, 1000f);
+      
+
         for (int i = 0; i < hits.Length; i++)
-        {
+        {         
             RaycastHit hit = hits[i];
             Collider Hit = hit.transform.GetComponent<Collider>();
             Debug.DrawRay(positionRay, dir*1000, Color.blue);
             if (Hit)
-            {
-                if (hit.collider.tag == _floorNameTag ) //&& hit.collider!= ignoreColider)
+            {             
+                if (hit.collider.tag == _floorNameTag && ignoreColider !=hit.collider)
                 {
-                    hitDowns = hit.collider.gameObject.GetComponent<Renderer>().bounds.size.y + 0.1f;
-                    floorColider = hit.collider;
-                    ignoreColider = null;
-                    hitTo = hit.point;
-                    return Hit;
+                    hitDowns =  hit.collider.gameObject.GetComponent<Renderer>().bounds.size.y + 0.5f;     
+					hitTo = hit.point;
+                    ignoreColider = hit.collider;
+					return Hit;                   
                 }
                 else
-                {
-                    //floorColider = hit.collider;
-                   
+                {                   
                     hitTo = hit.point;
                 }
             }
-            floorObject = null;
+            floorObject = null;			
         }
+      
         return false;
     }
     #endregion

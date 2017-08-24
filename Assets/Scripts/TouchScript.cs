@@ -61,10 +61,17 @@ public class TouchScript : MonoBehaviour
 
     public void changeSens(float sens){
         rotationSpeed = sens;
-        SensevityScale = sens;
+      
         text.text = ""+rotationSpeed;
 
     }
+	public void changeSensSCALE(float sens)
+	{
+        SensevityScale = sens;
+
+        text.text = "" + SensevityScale;
+
+	}
 
 
     void Update()
@@ -96,7 +103,7 @@ public class TouchScript : MonoBehaviour
                             if (Input.GetMouseButtonDown(0))
                             {
 
-                                Debug.Log("pressDown");
+                                //Debug.Log("pressDown");
                                 dist = hit.distance; //hit.distance + Camera.main.nearClipPlane;
                                 trim = hit.collider.transform.position - hit.point;
                              //   recipient.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
@@ -108,7 +115,7 @@ public class TouchScript : MonoBehaviour
                             }
                             if (Input.GetMouseButton(0))
                             {
-                                Debug.Log("mouseButton");
+                                //Debug.Log("mouseButton");
                                 Vector3 pos = Input.mousePosition;
                                 pos.z = dist;
                                 //pos = ray.origin + ray.direction * dist;

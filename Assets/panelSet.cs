@@ -15,7 +15,7 @@ public class panelSet : MonoBehaviour
 
         public void OpenClouseMenu()
         {
-        Debug.Log("hideMenu");
+        //Debug.Log("hideMenu");
             if (animator.GetBool("hide"))
             {
                 animator.SetBool("hide", false);
