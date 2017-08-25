@@ -6,7 +6,7 @@ using UnityEngine;
 public class MoveFloorToTap : MonoBehaviour
 {
     #region Enum
-    private enum _state { up, down, lookTap, walk }
+    private enum _state { up, down, lookTap,inside, walk }
     private _state direct;
     #endregion
 
@@ -43,6 +43,7 @@ public class MoveFloorToTap : MonoBehaviour
     private Collider ignoreColider;
 
     private GameObject hiro;
+    private bool moveToTap;
 
 
     #endregion
@@ -71,7 +72,7 @@ public class MoveFloorToTap : MonoBehaviour
         if (!_moveCorutine && _move)
         {
             _moveCorutine = true;
-            StartCoroutine(moveToPosition(_stage.transform.position, SpotPosition));
+            StartCoroutine(moveToPosition(_stage.transform.localPosition, SpotPosition));
             // GetComponentInChildren<Collider>().enabled=false;
            // GetComponentInChildren<Rigidbody>().isKinematic = true;
         }
@@ -92,6 +93,8 @@ public class MoveFloorToTap : MonoBehaviour
         //GetComponentInChildren<Rigidbody>().isKinematic = false;
         _move = false;
         _moveCorutine = false;
+        moveToTap = false;
+       
     }
     private void controlKeys()//команды управления.
     {
@@ -109,7 +112,7 @@ public class MoveFloorToTap : MonoBehaviour
             {
                 getFloor(_state.lookTap);
             }
-            if (Input.GetMouseButton(3))
+            if (Input.GetKey(KeyCode.W))
             {
                 getFloor(_state.walk);
             }
@@ -121,30 +124,47 @@ public class MoveFloorToTap : MonoBehaviour
         {
             switch (State)
             {
+                case _state.inside:
+
+
+					
+                    if (rayCaster(Camera.main.transform.position,Camera.main.transform.forward ))
+					{
+						
+						rayCaster(new Vector3(hitTo.x, hitTo.y + hitDowns, hitTo.z), Vector3.down);
+
+
+						CalculateMove(hitTo);
+					}
+					break;
                 case _state.lookTap:
 
 
                     ignoreColider = null;
-
-                    if (rayCaster(Camera.main.transform.position, Camera.main.transform.forward))
+                    moveToTap = true;
+                    if (rayCaster(Camera.main.transform.position, Camera.main.ScreenPointToRay(Input.mousePosition).direction))
                     {
-                        rayCaster(new Vector3(hitTo.x, hitTo.y + hitDowns, hitTo.z), Vector3.down);
+						ignoreColider = null;
+                        rayCaster(new Vector3(hitTo.x,hitTo.y + hitDowns, hitTo.z), Vector3.down);
+
+                       
                         CalculateMove(hitTo);
                     }
                     break;
                 case _state.up:
-					
-                    if (rayCaster(Camera.main.transform.position, Vector3.up))
-                    {
-                        rayCaster(new Vector3(hitTo.x, hitTo.y + hitDowns, hitTo.z), Vector3.up);
+                   
+					if (rayCaster(Camera.main.transform.position, Vector3.up))
+                    {                     
+                        rayCaster(new Vector3(hitTo.x, hitTo.y + hitDowns, hitTo.z), Vector3.down);
                         CalculateMove(hitTo);
                     }
                     break;
                 case _state.down:
+                  
 					
                     if (rayCaster(Camera.main.transform.position, Vector3.down))
                     {
-                        rayCaster(new Vector3(hitTo.x, hitTo.y + hitDowns, hitTo.z), Vector3.down);
+                        rayCaster(new Vector3(hitTo.x, hitTo.y - hitDowns, hitTo.z), Vector3.down);
                         CalculateMove(hitTo);
                     }
                     break;
@@ -168,7 +188,7 @@ public class MoveFloorToTap : MonoBehaviour
 	public void jumpToSpot()
 	{
         ignoreColider = null;
-        getFloor(_state.lookTap);	
+        getFloor(_state.inside);	
 	}
     public void liftUp(){
         getFloor(_state.up);
@@ -179,8 +199,9 @@ public class MoveFloorToTap : MonoBehaviour
         
     private void CalculateMove(Vector3 hitToPos)
     {
-        ignoreColider = floorColider;
-        float heghtHiro = 1.8f;// / 2; //GetComponentInChildren<Collider>().bounds.size.y / 2;
+        ignoreColider = null;
+       
+        float heghtHiro = 1.7f;// = GetComponentInChildren<Collider>().bounds.size.y / 2;		
         SpotPosition = _stage.transform.position + new Vector3(transform.position.x, transform.position.y - heghtHiro, transform.position.z) - hitToPos;
         instatientPatchSpot(SpotPosition);
 
@@ -195,6 +216,7 @@ public class MoveFloorToTap : MonoBehaviour
         spotPatch.transform.localPosition = _stage.transform.InverseTransformPoint(hitTo);
     }
 
+
     private bool rayCaster(Vector3 positionRay, Vector3 dir)
     {
         RaycastHit[] hits;
@@ -206,14 +228,25 @@ public class MoveFloorToTap : MonoBehaviour
         {         
             RaycastHit hit = hits[i];
             Collider Hit = hit.transform.GetComponent<Collider>();
+
             Debug.DrawRay(positionRay, dir*1000, Color.blue);
             if (Hit)
             {             
-                if (hit.collider.tag == _floorNameTag && ignoreColider !=hit.collider)
+                if (hit.collider.tag == _floorNameTag && hit.collider!=ignoreColider)
                 {
-                    hitDowns =  hit.collider.gameObject.GetComponent<Renderer>().bounds.size.y + 0.5f;     
+                    hitDowns =  hit.collider.gameObject.GetComponent<Renderer>().bounds.size.y + 0.01f;     					
+                    floorColider = hit.collider;
+
+                    if (moveToTap){					
+
+					ignoreColider = hit.collider;
+
+					}else{
+					ignoreColider = null;
+
+					}
+
 					hitTo = hit.point;
-                    ignoreColider = hit.collider;
 					return Hit;                   
                 }
                 else
