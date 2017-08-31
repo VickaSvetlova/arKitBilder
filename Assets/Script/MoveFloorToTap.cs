@@ -30,7 +30,7 @@ public class MoveFloorToTap : MonoBehaviour
     [SerializeField]
     private GameObject spotPatch;
     private GameObject spotOld = null;
-    public GameObject _stage;
+    public static GameObject _stage;
     [SerializeField]
     private string _floorNameTag = "floor";
     private string _floorNameThis;
@@ -64,6 +64,7 @@ public class MoveFloorToTap : MonoBehaviour
     }
     private void Update()
     {
+        
         controlKeys();
         controllMove();
     }
@@ -141,10 +142,9 @@ public class MoveFloorToTap : MonoBehaviour
 
 
                     ignoreColider = null;
-                    moveToTap = true;
-                    if (rayCaster(Camera.main.transform.position, Camera.main.ScreenPointToRay(Input.mousePosition).direction))
-                    {
-						ignoreColider = null;
+                    //moveToTap = true;
+                    if (rayCaster(Camera.main.transform.position, Camera.main.transform.forward))
+                    {					
                         rayCaster(new Vector3(hitTo.x,hitTo.y + hitDowns, hitTo.z), Vector3.down);
 
                        
@@ -188,7 +188,7 @@ public class MoveFloorToTap : MonoBehaviour
 	public void jumpToSpot()
 	{
         ignoreColider = null;
-        getFloor(_state.inside);	
+        getFloor(_state.lookTap);	
 	}
     public void liftUp(){
         getFloor(_state.up);
@@ -199,11 +199,11 @@ public class MoveFloorToTap : MonoBehaviour
         
     private void CalculateMove(Vector3 hitToPos)
     {
-        ignoreColider = null;
+        //ignoreColider = null;
        
         float heghtHiro = 1.7f;// = GetComponentInChildren<Collider>().bounds.size.y / 2;		
         SpotPosition = _stage.transform.position + new Vector3(transform.position.x, transform.position.y - heghtHiro, transform.position.z) - hitToPos;
-        instatientPatchSpot(SpotPosition);
+        //instatientPatchSpot(SpotPosition);
 
         if (moveTo)
         {
@@ -237,14 +237,8 @@ public class MoveFloorToTap : MonoBehaviour
                     hitDowns =  hit.collider.gameObject.GetComponent<Renderer>().bounds.size.y + 0.01f;     					
                     floorColider = hit.collider;
 
-                    if (moveToTap){					
-
-					ignoreColider = hit.collider;
-
-					}else{
+                   
 					ignoreColider = null;
-
-					}
 
 					hitTo = hit.point;
 					return Hit;                   
